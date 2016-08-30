@@ -1,0 +1,200 @@
+<html>
+<head>
+<style >
+#img{
+	background-image: url("background.png");
+    background-size:contain;
+    position: fixed;
+}
+
+
+</style>
+
+</head>
+<body>
+  <audio autoplay>
+     <source src="audio.mp3" type="audio/mpeg">
+     </audio>
+<canvas id="img" width="1300" height="560" style="border:2px solid;" ></canvas></div>
+<script>
+var x1=0;
+var g =0; var u =0; 
+var canvas=document.getElementById('img');
+var context=canvas.getContext("2d");
+var img=new Image();
+
+
+window.addEventListener("keydown",key,false);
+window.addEventListener("keyup",key,false);
+var firsttime=1;
+var id=0;
+var x=0;
+var y=330;
+var object=new Image();
+object.src="standing.png";
+  var x1=1300;         //X1,X2,X3 are the x cordinates of the obstacles respectively
+  var y1=370;          //Y1,Y2,Y3 are the x cordinates of the obstacles respectively
+  var x2=2400;
+  var y2=370;
+  var x3=1800;
+  var y3=370;
+  var coinx=2100;     //x and y cordinates of coins
+  var coiny=370;
+  var score=0;
+ 
+
+
+
+object.onload=function()
+{
+	context.drawImage(object,x,y,130,130);
+	var id=setInterval(moveobs,10);
+  
+}       
+function jump()
+{
+  
+
+                  
+                            context.clearRect(x,y,130,130);
+                              y=y-u;
+                              u=u-g;
+                              context.drawImage(object,x,y,130,130);
+                              
+                            if(y > 330)
+                            {y=330;
+                            u=0;a=0;}
+}
+
+function key(e)
+{
+	
+        	if(e.keyCode==38)
+        	{  
+                if(firsttime == 0)
+                  clearInterval(id);
+                u = 10; g = .5;
+        		    firsttime = 0;
+                id =  setInterval(jump,10);
+              		
+
+        	
+        }
+     if(e.keyCode==39)
+            { 
+              context.clearRect(x,y,130,130);
+              x=x+4;
+              
+                      if((x+56)==1300)
+                      {
+                       context.clearRect(object,x,y,130,130);
+                       x=0;
+                       clear();
+                       context.drawImage(object,x,y,130,130);
+
+                      }
+              context.drawImage(object,x,y,130,130);
+
+            }
+
+    }
+   
+    var obstacle=new Image();
+    obstacle.src="obstacle.png";
+    
+    var obstacle1=new Image();
+    obstacle1.src="obstacle.png";
+     
+    var obstacle2=new Image();
+    obstacle2.src="snake.png";
+
+      var cloudx=1400;
+      var cloudy=50;
+      var cloud=new Image();
+      cloud.src="cloud.png";
+      var cloud1=new Image();
+      var cloud1x=2000;
+      var cloud1y=100;
+      cloud1.src="cloud.png";
+    function moveobs()
+    {  
+context.drawImage(obstacle,x1,y1,80,80);
+context.drawImage(obstacle1,x2,y2,80,80);
+context.drawImage(obstacle2,x3,y3,80,80);
+context.drawImage(cloud,cloudx,cloudy,120,80);
+context.drawImage(cloud1,cloud1x,cloud1y,120,80);
+
+            if((x+56)>=x1&&x<x1+76)
+           {
+                  if((y+130)>=(y1-20))
+                  {
+                  alert("game over,score is"+score);
+                  return 0;
+                  }
+           }  
+           if((x+56)>=x2&&x<x2+76)
+           {
+                  if((y+130)>=(y2-20))
+                  {
+                  alert("game over,score is"+score);
+                 return 0;
+                  }
+           }
+           if((x+56)>=x3&&x<x3+76)
+           {
+                  if((y+130)>=(y3-20))
+                  {
+                    alert("game over,score is"+score);
+                  return 0;
+                  }  
+          }
+          if(x1==0)
+            score++;
+          if(x2==0)
+            score++;
+          if(x3==0)
+            score++;
+      
+    
+    leftobs();
+    function leftobs()
+                     {
+    	    context.clearRect(x1,y1,80,80);
+          context.clearRect(x2,y2,80,80);
+          context.clearRect(x3,y3,80,80);
+          context.clearRect(cloudx,cloudy,120,80);
+          context.clearRect(cloud1x,cloud1y,120,80);
+    	      x1=x1-4;
+            x2=x2-4;
+            x3=x3-4;
+            cloudx=cloudx-2;
+            cloud1x=cloud1x-2;
+         
+          context.drawImage(obstacle,x1,y1,80,80);
+    	    context.drawImage(obstacle1,x2,y2,80,80);
+          context.drawImage(obstacle2,x3,y3,80,80);
+          context.drawImage(cloud,cloudx,cloudy,120,80);
+          context.drawImage(cloud1,cloud1x,cloud1y,120,80);
+            if(x2==0)
+            { context.clearRect(x2,y2,80,80);
+              x1=1800;
+              x2=2100;
+              x3=1300;
+              cloud1x=1400;
+              cloudx=2000;
+              moveobs();
+            }
+
+
+                      }
+    }
+    function clear(){
+      context.clearRect(x1,y1,80,80);
+      context.clearRect(x2,y2,80,80);
+      context.clearRect(x3,y3,80,80);
+    }
+</script>
+</body>
+
+
+</html>

@@ -1,0 +1,35 @@
+<html>
+<head>
+	<style >
+   
+	</style>
+</head>
+<body>
+	
+<canvas id="canvas" width="1300" height="1300"></canvas>
+<script >
+var x=0;
+var y=0;
+var canvas=document.getElementById('canvas');
+var context=canvas.getContext("2d");
+window.addEventListener("keydown",key,false);
+var img=new Image();
+img.src="AKGEC.png";
+img.onload=function(){
+	context.drawImage(img,x,y,180,180);
+}
+function key(e)
+{
+	if(e.keyCode==39)
+	{
+		context.clearRect(x,y,180,180);
+		x=x+5;
+	   context.drawImage(img,x,y,180,180);
+	}
+}
+</script>
+
+</body>
+
+
+</html>

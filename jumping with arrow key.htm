@@ -1,0 +1,53 @@
+<html>
+<head>
+	<style >
+   
+	</style>
+</head>
+<body>
+	
+<canvas id="canvas" width="1350" height="600"  ></canvas>
+<script >
+var x=0;
+var y=140;
+var canvas=document.getElementById('canvas');
+var context=canvas.getContext("2d");
+window.addEventListener("keydown",key,false);
+var img=new Image();
+img.src="standing.png";
+
+img.onload=function(){
+	context.drawImage(img,x,y,180,180);
+
+}
+
+function key(e)
+{
+	if(e.keyCode==38)
+	{  
+		
+		if(y==90)
+		{while(y<=140){
+		context.clearRect(x,y,180,180);
+		y=y+5;
+		context.drawImage(img,x,y,180,180);
+		
+		}
+	}
+		else{
+		
+			context.clearRect(x,y,180,180);
+		    y=y-5;
+		    context.drawImage(img,x,y,180,180);
+		    
+			
+		}
+
+	}
+}
+</script>
+
+</body>
+
+
+</html>

@@ -1,0 +1,37 @@
+<html>
+<head>
+	<style >
+  
+	</style>
+</head>
+<body>
+	<div >
+<canvas id="img" width="1350" height="600" style="border:2px solid;" ></canvas></div>
+<script >
+var x=700;
+var y=140;
+var canvas=document.getElementById('img');
+var context=canvas.getContext("2d");
+window.addEventListener("keydown",key,false);
+var img=new Image();
+img.src="obstacle.jpg";
+img.onload=function(){
+	context.drawImage(img,x,y,180,180);
+
+}
+function key(e)
+{
+	if(e.keyCode==38)
+	{  
+		context.clearRect(x,y,180,180);
+		x=x-Math.random()*10;
+		context.drawImage(img,x,y,180,180);
+
+	}
+}
+</script>
+
+</body>
+
+
+</html>
